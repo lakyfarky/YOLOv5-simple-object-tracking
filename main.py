@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from sort import *
 
 class Yolov5:
     def __init__(self, net_path, classes_path, source=0):
@@ -120,11 +121,12 @@ class Yolov5:
             cv2.rectangle(input_image, (left, top), (left + width, top + height), self.BLUE, 3*self.THICKNESS)
             label = "{}:{:.2f}".format(self.classes[class_ids[i]], confidences[i])
             self.draw_label(input_image, label, left, top)
-            
+
         return input_image
 
 
 yolo = Yolov5("weights\yolov5n.onnx", "config\coco_classes.txt")
+tracker = Sort()
 
 frame = 0
 # Obtain frame size information using get() method
@@ -134,7 +136,7 @@ frame_size = (frame_width,frame_height)
 fps = 20
 
 # Initialize video writer object
-output = cv2.VideoWriter(f'data/164.avi', cv2.VideoWriter_fourcc(*'MJPG'), 20, frame_size)
+output = cv2.VideoWriter(f'data/webcam.avi', cv2.VideoWriter_fourcc(*'MJPG'), 20, frame_size)
 while True:
     frame+=1
     _, frame = yolo.capture.read()
