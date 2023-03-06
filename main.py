@@ -116,11 +116,11 @@ class Yolov5:
             top = box[1]
             width = box[2]
             height = box[3]
-            license_plate = input_image[top:top+height, left:left+width]
 
             cv2.rectangle(input_image, (left, top), (left + width, top + height), self.BLUE, 3*self.THICKNESS)
             label = "{}:{:.2f}".format(self.classes[class_ids[i]], confidences[i])
             self.draw_label(input_image, label, left, top)
+            
         return input_image
 
 
@@ -148,7 +148,7 @@ while True:
     t, _ = yolo.net.getPerfProfile()
     label = 'FPS: %.2f' % (1000/(t * 1000.0 / cv2.getTickFrequency()))
     
-    #cv2.putText(img, label, (20, 40), yolo.FONT_FACE, yolo.FONT_SCALE, yolo.RED, yolo.THICKNESS, cv2.LINE_AA)
+    cv2.putText(img, label, (20, 40), yolo.FONT_FACE, yolo.FONT_SCALE, yolo.RED, yolo.THICKNESS, cv2.LINE_AA)
     #output.write(img)
     cv2.imshow('Output', img)
     cv2.waitKey(5)
