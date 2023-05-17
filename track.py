@@ -42,7 +42,7 @@ crossed = {line["name"]:set() for line in lines}
 classes = load_classes()
 tracker = Sort()
 # load pretrained model
-model = yolov5.load('weights\yolov5s.pt', device=0)
+model = yolov5.load('weights\yolov5s.pt')
 #model = torch.hub.load('ultralytics/yolov5', 'custom', 'weights\yolov5s.pt')  
 model.float()
 model.eval()
