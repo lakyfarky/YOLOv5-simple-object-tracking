@@ -134,3 +134,5 @@ weights/
 config/
 track.sh
 track/
+data/
+strong.py
